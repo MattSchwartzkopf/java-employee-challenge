@@ -49,7 +49,9 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
         ResponseEntity<EmployeeSingleResponse> response =
                 restTemplate.getForEntity(SERVER_URL + "/" + id, EmployeeSingleResponse.class);
 
-        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null || response.getBody().getData() == null) {
+        if (!response.getStatusCode().is2xxSuccessful()
+                || response.getBody() == null
+                || response.getBody().getData() == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
@@ -103,7 +105,9 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
                 restTemplate.getForEntity(SERVER_URL + "/" + id, EmployeeSingleResponse.class);
 
         // Handle error cases
-        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null || response.getBody().getData() == null) {
+        if (!response.getStatusCode().is2xxSuccessful()
+                || response.getBody() == null
+                || response.getBody().getData() == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee with id " + id + " not found");
         }
 

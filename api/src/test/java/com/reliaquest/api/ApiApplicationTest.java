@@ -54,7 +54,8 @@ class ApiApplicationTest {
         EmployeeResponse mockResponse = new EmployeeResponse();
         mockResponse.setData(Arrays.asList(e1, e2));
 
-        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class))).thenReturn(ResponseEntity.ok(mockResponse));
+        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class)))
+                .thenReturn(ResponseEntity.ok(mockResponse));
 
         ResponseEntity<List<Employee>> result = controller.getAllEmployees();
 
@@ -67,7 +68,8 @@ class ApiApplicationTest {
         EmployeeResponse mockResponse = new EmployeeResponse();
         mockResponse.setData(List.of());
 
-        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class))).thenReturn(ResponseEntity.ok(mockResponse));
+        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class)))
+                .thenReturn(ResponseEntity.ok(mockResponse));
 
         ResponseEntity<List<Employee>> result = controller.getAllEmployees();
 
@@ -84,7 +86,8 @@ class ApiApplicationTest {
         EmployeeResponse mockResponse = new EmployeeResponse();
         mockResponse.setData(Arrays.asList(e1, e2));
 
-        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class))).thenReturn(ResponseEntity.ok(mockResponse));
+        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class)))
+                .thenReturn(ResponseEntity.ok(mockResponse));
 
         ResponseEntity<List<Employee>> result = controller.getEmployeesByNameSearch("Alice");
 
@@ -98,7 +101,8 @@ class ApiApplicationTest {
         EmployeeResponse mockResponse = new EmployeeResponse();
         mockResponse.setData(List.of(e1));
 
-        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class))).thenReturn(ResponseEntity.ok(mockResponse));
+        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class)))
+                .thenReturn(ResponseEntity.ok(mockResponse));
 
         ResponseEntity<List<Employee>> result = controller.getEmployeesByNameSearch("Zoe");
 
@@ -114,7 +118,8 @@ class ApiApplicationTest {
         EmployeeSingleResponse singleResponse = new EmployeeSingleResponse();
         singleResponse.setData(e1);
 
-        when(restTemplate.getForEntity(contains("/123"), eq(EmployeeSingleResponse.class))).thenReturn(ResponseEntity.ok(singleResponse));
+        when(restTemplate.getForEntity(contains("/123"), eq(EmployeeSingleResponse.class)))
+                .thenReturn(ResponseEntity.ok(singleResponse));
 
         ResponseEntity<Employee> result = controller.getEmployeeById("123");
 
@@ -123,7 +128,8 @@ class ApiApplicationTest {
 
     @Test
     void getEmployeeById_returnsNullIfNotFound() {
-        when(restTemplate.getForEntity(contains("/999"), eq(EmployeeSingleResponse.class))).thenReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
+        when(restTemplate.getForEntity(contains("/999"), eq(EmployeeSingleResponse.class)))
+                .thenReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
 
         ResponseEntity<Employee> result = controller.getEmployeeById("999");
 
@@ -140,7 +146,8 @@ class ApiApplicationTest {
         EmployeeResponse mockResponse = new EmployeeResponse();
         mockResponse.setData(Arrays.asList(e1, e2));
 
-        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class))).thenReturn(ResponseEntity.ok(mockResponse));
+        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class)))
+                .thenReturn(ResponseEntity.ok(mockResponse));
 
         ResponseEntity<Integer> result = controller.getHighestSalaryOfEmployees();
 
@@ -152,7 +159,8 @@ class ApiApplicationTest {
         EmployeeResponse mockResponse = new EmployeeResponse();
         mockResponse.setData(List.of());
 
-        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class))).thenReturn(ResponseEntity.ok(mockResponse));
+        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class)))
+                .thenReturn(ResponseEntity.ok(mockResponse));
 
         ResponseEntity<Integer> result = controller.getHighestSalaryOfEmployees();
 
@@ -171,7 +179,8 @@ class ApiApplicationTest {
         EmployeeResponse mockResponse = new EmployeeResponse();
         mockResponse.setData(Arrays.asList(e1, e2));
 
-        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class))).thenReturn(ResponseEntity.ok(mockResponse));
+        when(restTemplate.getForEntity(anyString(), eq(EmployeeResponse.class)))
+                .thenReturn(ResponseEntity.ok(mockResponse));
 
         ResponseEntity<List<String>> result = controller.getTopTenHighestEarningEmployeeNames();
 
@@ -193,7 +202,8 @@ class ApiApplicationTest {
         EmployeeSingleResponse singleResponse = new EmployeeSingleResponse();
         singleResponse.setData(e1);
 
-        when(restTemplate.postForEntity(anyString(), any(HttpEntity.class), eq(EmployeeSingleResponse.class))).thenReturn(ResponseEntity.ok(singleResponse));
+        when(restTemplate.postForEntity(anyString(), any(HttpEntity.class), eq(EmployeeSingleResponse.class)))
+                .thenReturn(ResponseEntity.ok(singleResponse));
 
         ResponseEntity<Employee> result = controller.createEmployee(input);
 
@@ -223,7 +233,8 @@ class ApiApplicationTest {
 
     @Test
     void deleteEmployeeById_returns404IfNotFound() {
-        when(restTemplate.getForEntity(contains("/999"), eq(EmployeeSingleResponse.class))).thenReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
+        when(restTemplate.getForEntity(contains("/999"), eq(EmployeeSingleResponse.class)))
+                .thenReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
 
         ResponseEntity<String> result = controller.deleteEmployeeById("999");
 
