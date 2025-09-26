@@ -11,7 +11,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -93,7 +98,9 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
                 restTemplate.getForEntity(SERVER_URL + "/" + id, EmployeeSingleResponse.class);
 
         // Handle error cases
-        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null || response.getBody().getData() == null) {
+        if (!response.getStatusCode().is2xxSuccessful()
+                || response.getBody() == null
+                || response.getBody().getData() == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee with id " + id + " not found");
         }
 
