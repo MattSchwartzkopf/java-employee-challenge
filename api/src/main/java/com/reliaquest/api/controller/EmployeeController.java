@@ -26,7 +26,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class EmployeeController implements IEmployeeController<Employee, EmployeeInput> {
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
     private static final String SERVER_URL = "http://localhost:8112/api/v1/employee";
 
     @Override
@@ -48,6 +48,11 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
     public ResponseEntity<Employee> getEmployeeById(String id) {
         ResponseEntity<EmployeeSingleResponse> response =
                 restTemplate.getForEntity(SERVER_URL + "/" + id, EmployeeSingleResponse.class);
+
+        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null || response.getBody().getData() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
         return ResponseEntity.ok(response.getBody().getData());
     }
 
@@ -98,16 +103,14 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
                 restTemplate.getForEntity(SERVER_URL + "/" + id, EmployeeSingleResponse.class);
 
         // Handle error cases
-        if (!response.getStatusCode().is2xxSuccessful()
-                || response.getBody() == null
-                || response.getBody().getData() == null) {
+        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null || response.getBody().getData() == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee with id " + id + " not found");
         }
 
         // Get the employee's name
         String name = response.getBody().getData().getEmployee_name();
 
-        // Build request body for DELETE
+        // Build request body and headers for DELETE
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         String body = String.format("{\"name\": \"%s\"}", name);
