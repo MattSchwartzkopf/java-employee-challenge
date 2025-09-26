@@ -144,5 +144,37 @@ This project utilizes Gradle plugin [Diffplug Spotless](https://github.com/diffp
 and style guidelines with every build. 
 
 To resolve any errors, you must run **spotlessApply** task.
+
+### Below are example Insomnia requests I sent to test the functionality
+# Get All Employee:
+<img width="1448" height="882" alt="image" src="https://github.com/user-attachments/assets/80522225-ea11-4c87-b249-34877f5cfeeb" />
+
+# Get Employees By Name Search
+<img width="1467" height="608" alt="image" src="https://github.com/user-attachments/assets/52641f78-6896-4594-9da9-dfa293b78b25" />
+
+# Get Employee By Id
+<img width="1482" height="382" alt="image" src="https://github.com/user-attachments/assets/de4fbe35-42ae-4293-b417-abcbe9edd280" />
+
+# Get Highest Salary of Employees
+<img width="1489" height="364" alt="image" src="https://github.com/user-attachments/assets/1e3ec6f4-6254-450d-bac9-a8199eebf8b0" />
+
+# Get Top Ten Highest Earning Employee Names
+<img width="1498" height="383" alt="image" src="https://github.com/user-attachments/assets/39af3ccb-9c9a-4cee-b999-f24a105f1c14" />
+
+# Create Employee
+<img width="1490" height="411" alt="image" src="https://github.com/user-attachments/assets/58674996-2414-4b70-9675-4953c4924297" />
+
+# Proof of Created Employee
+<img width="1488" height="456" alt="image" src="https://github.com/user-attachments/assets/af233f92-1839-4fcb-bd5d-e6f943bdddb4" />
+
+# Delete Employee
+<img width="1499" height="509" alt="image" src="https://github.com/user-attachments/assets/54e80d57-a252-4129-b15e-81f15dbd4efa" />
+
+# Proof of Deleted Employee
+<img width="1499" height="405" alt="image" src="https://github.com/user-attachments/assets/446ef781-d189-4f35-b9ea-af1c524a7998" />
+
+
+
+
 `./gradlew spotlessApply`
 
